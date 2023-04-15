@@ -1,6 +1,6 @@
 var x = 15;
 var y = 15;
-var dx = 1;
+var dx = 2;
 var dy = 0.5;
 var width;
 var height;
@@ -24,8 +24,8 @@ var PADDING;
 
 
 function draw() {
-
   ctx.clearRect(0, 0, height, width);
+  drawbricks();
   ctx.beginPath();
   ctx.rect(paddlex, height - paddleh, paddlew, paddleh);
   ctx.arc(x, y, r, 0, Math.PI * 2, true);
@@ -66,6 +66,7 @@ if (paddlex < width && paddlex > 0) {
     }
     
 }
+init();
 
 
 function init(){
@@ -80,6 +81,33 @@ function init(){
     canvasMaxX = canvasMinX + width - paddlew;
     return interval = setInterval(draw, 10);
 
+}
+
+function drawbricks(){
+    for (i=0; i < NROWS; i++) {
+        for (j=0; j < NCOLS; j++) {
+            if(bricks[i][j]==1)
+                ctx.fillRect(i*BRICKWIDTH + i*PADDING, j*BRICKHEIGHT + j*PADDING, BRICKWIDTH, BRICKHEIGHT);
+        }
+  }
+
+}
+
+
+//inicializacija opek - polnjenje v tabelo
+function initbricks() { 
+  NROWS = 5;
+  NCOLS = 5;
+  BRICKWIDTH = (width/NCOLS) - 1;
+  BRICKHEIGHT = 15;
+  PADDING = 1;
+  bricks = new Array(NROWS);
+  for (i=0; i < NROWS; i++) {
+    bricks[i] = new Array(NCOLS);
+    for (j=0; j < NCOLS; j++) {
+      bricks[i][j] = 1;
+    }
+  }
 }
 
 //nastavljanje leve in desne tipke
@@ -105,3 +133,4 @@ function onMouseMove(evt) {
   $(document).mousemove(onMouseMove);
   $(document).keydown(onKeyDown);
   $(document).keyup(onKeyUp); 
+  initbricks();
