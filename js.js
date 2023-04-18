@@ -1,7 +1,7 @@
-var x = 15;
-var y = 15;
-var dx = 2;
-var dy = 0.5;
+var x = 150;
+var y = 200;
+var dx = 0.5;
+var dy = 1;
 var width;
 var height;
 var r=10;
@@ -21,6 +21,11 @@ var NCOLS;
 var BRICKWIDTH;
 var BRICKHEIGHT;
 var PADDING;
+var row;
+var col;
+var rowheight;
+var colwidth;
+var collision;
 
 
 function draw() {
@@ -44,29 +49,45 @@ if (paddlex < width && paddlex > 0) {
         else if (leftDown && paddlex > 0)
             paddlex -= 5;
     }
-  
 
   x += dx;
   y += dy;
-  if(x + dx > width -r || x + dx < 0 +r )
+  if(x + dx > width -r || x + dx < r )
     dx =-dx
 
-  if (y + dy > height -r|| y + dy < 0 +r)
+  if (y + dy > height -r|| y + dy < r)
     dy = -dy;
-    x += dx;
-    y += dy;
 
-    if (y + dy < 0+r)
+
+  x += dx;
+  y += dy;
+
+    if (y + dy < r)
         dy = -dy;
-    else if (y + dy > height-r*2) {
-        if (x > paddlex && x < paddlex + paddlew)
-            dy = -dy;
-        else 
+    if (y + dy > height-r*2) {
+        if (x > paddlex - r && x < paddlex + paddlew + r){
+          dx = 8 * ((x-(paddlex+paddlew/2))/paddlew);
+          dy = -dy;
+        }
+        else if (y + dy > height-r){
             clearInterval(interval);
+            clearInterval(collision);
+        }
     }
     
 }
 init();
+
+function brickCollision(){
+  rowheight = BRICKHEIGHT + PADDING  /2;
+  colwidth = BRICKWIDTH + PADDING  /2;
+  row = Math.floor(y/rowheight);
+  col = Math.floor(x/colwidth);
+  //ce smo zadeli opeko, vrni povratno kroglo in oznaci v tabeli, da opeke ni več
+if (y < NROWS * rowheight && row >= 0 && col >= 0 && bricks[col][row] == 1) {
+  dy = -dy; bricks[col][row] = 0;
+  }
+}
 
 
 function init(){
@@ -79,8 +100,8 @@ function init(){
     paddlew = 100;
     canvasMinX = $("canvas").offset().left + paddlew / 2;
     canvasMaxX = canvasMinX + width - paddlew;
+    collision=setInterval(brickCollision, 10);
     return interval = setInterval(draw, 10);
-
 }
 
 function drawbricks(){
