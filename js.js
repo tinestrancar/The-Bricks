@@ -79,8 +79,8 @@ if (paddlex < width && paddlex > 0) {
 init();
 
 function brickCollision(){
-  rowheight = BRICKHEIGHT + PADDING  /2;
-  colwidth = BRICKWIDTH + PADDING  /2;
+  rowheight = BRICKHEIGHT + PADDING;
+  colwidth = BRICKWIDTH + PADDING;
   row = Math.floor(y/rowheight);
   col = Math.floor(x/colwidth);
   //ce smo zadeli opeko, vrni povratno kroglo in oznaci v tabeli, da opeke ni več
@@ -107,9 +107,13 @@ function init(){
 function drawbricks(){
     for (i=0; i < NROWS; i++) {
         for (j=0; j < NCOLS; j++) {
-            if(bricks[i][j]==1)
-                ctx.fillRect(i*BRICKWIDTH + i*PADDING, j*BRICKHEIGHT + j*PADDING, BRICKWIDTH, BRICKHEIGHT);
+            if(bricks[i][j]==1){
+                ctx.fillStyle=("blue")
+                ctx.fillRect(i*BRICKWIDTH + i*PADDING + 4, j*BRICKHEIGHT + j*PADDING, BRICKWIDTH, BRICKHEIGHT);
+            }
+            ctx.fillStyle=("black")
         }
+              
   }
 
 }
@@ -119,9 +123,9 @@ function drawbricks(){
 function initbricks() { 
   NROWS = 5;
   NCOLS = 5;
-  BRICKWIDTH = (width/NCOLS) - 1;
+  BRICKWIDTH = (width/NCOLS) - 4;
   BRICKHEIGHT = 15;
-  PADDING = 1;
+  PADDING = 3;
   bricks = new Array(NROWS);
   for (i=0; i < NROWS; i++) {
     bricks[i] = new Array(NCOLS);
