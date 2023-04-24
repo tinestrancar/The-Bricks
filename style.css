@@ -1,7 +1,102 @@
+#wrapper{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    gap: 2%;
+}
+
+
+
+#wrapper div{
+    margin-top: 20px;
+
+}
+
+#board{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-bottom: 2%;
+}
+
+#notranji{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    caret-color: rgba(0, 0, 0, 0);
+
+}
+
 #canvas{
-    border: 1px solid black;
+    border: 4px solid black;
+    height: fit-content;
+    width: fit-content;
+    background-color: #342352f6;
+}
+
+html{
+    overflow: hidden;
+}
+
+.custom-swal-title {
+    color: red;
 }
 
 body{
+    background-image:url("assets/images/wall.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+input{
+    width: 88px;
+    height: 40px;
+    border: 2px solid black;
+    border-radius: 4px;
+    font-weight: bold;
+    background-color: #555555;
+    color: white;
+    font-size: 21px;
+    border-radius: 4px;
+    justify-content: center;
+}
+
+input[type=reset]{
+    transition-duration: 0.4s;
+    margin-top: 10%;
+}
+
+input[type=reset]:hover{
+    background-color: rgb(58, 176, 255);
+    cursor:pointer;
+}
+
+#points{
+    border-radius: 4px;
+    border: 2px solid black;
+    width: 92px;
+    height: 40px;
+    font-size: 21px;
+    font-weight: bold;
+    color: white;
+    background-color: #555555;
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#timer{
+    border-radius: 4px;
+    border: 2px solid black;
+    width: 92px;
+    height: 40px; 
+    font-size: 21px;
+    color: white;
+    font-weight: bold;
+    background-color: #555555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

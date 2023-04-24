@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html lang="sl">
 <head>
-<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script defer src="js.js"></script>
+<link rel="icon" type="image/x-icon" href="assets/images/favicon1.png">
+<script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script defer src="main.js"></script>
+<link rel="stylesheet" href="style.css">
 <title>The bricks</title>
 </head>
-<body>
-<canvas id="canvas" width="500" height="500" style="border: 1px solid black;"></canvas>
+<body onload="info()">
+<div id="wrapper">
+    <div id="notranji">
+        <div id="board">
+            <div id="points">Točke : <span style="color: white;" id="tocke"> 0</span></div>
+            <div id="timer">Čas : <span style="color: white;" id="cas">0</span></div>
+        </div>
+        <canvas id="canvas" width="500" height="500"></canvas>
+        <input type="reset" value="Reset" id="reset">
+    </div>
+
+</div>
 </body>
 </html>
