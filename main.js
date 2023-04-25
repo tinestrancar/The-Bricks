@@ -219,6 +219,7 @@ function info() {
     dy = 1;
     sekunde = 0;
     clearInterval(interval);
+    clearInterval(cas);
     init();
     initbricks();
   });
